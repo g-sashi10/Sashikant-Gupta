@@ -7,19 +7,43 @@
 }
 
 @layer base {
+  :root {
+    --bg-primary: #03060b;
+    --bg-secondary: #050912;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.05);
+    --card-bg: #0a0f1a;
+    --accent-blue: #3b82f6;
+  }
+
   body {
-    @apply bg-[#03060b] text-slate-300 antialiased;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    @apply antialiased;
     font-family: "Inter", sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    @apply text-white;
+    color: var(--text-primary);
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-500;
+  }
+  
+  .glass-card {
+    @apply bg-[var(--card-bg)] border border-[var(--border-color)] backdrop-blur-sm;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
   }
 }

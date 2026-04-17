@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -22,7 +21,8 @@ import {
   X,
   GraduationCap,
   Briefcase,
-  Layers
+  Layers,
+  Download
 } from "lucide-react";
 
 // --- Components ---
@@ -43,7 +43,7 @@ const SectionHeading = ({ children, subtitle }: { children: React.ReactNode; sub
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="text-blue-400 font-medium tracking-wider uppercase text-sm"
+        className="text-blue-500 font-medium tracking-wider uppercase text-sm"
       >
         {subtitle}
       </motion.p>
@@ -67,14 +67,26 @@ const Navbar = () => {
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
-    { name: "Education", href: "#education" },
     { name: "Contact", href: "#contact" },
   ];
+
+  const downloadResume = () => {
+    // Mock resume download logic
+    const link = document.createElement("a");
+    link.href = "#"; // Replace with actual resume link
+    link.download = "Sashikant_Gupta_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    alert("Resume download started! (Mock)");
+  };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-[#03060b]/80 backdrop-blur-md border-b border-white/10 py-4" : "bg-transparent py-6"
+        isScrolled 
+          ? "bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-[var(--border-color)] py-4 shadow-sm" 
+          : "bg-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -82,7 +94,7 @@ const Navbar = () => {
           href="#"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold text-white tracking-tighter"
+          className="text-2xl font-bold text-[var(--text-primary)] tracking-tighter"
         >
           SASHIKANT<span className="text-blue-500">.</span>
         </motion.a>
@@ -93,23 +105,28 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:text-blue-400 transition-colors"
+              className="text-sm font-medium hover:text-blue-500 transition-colors text-[var(--text-secondary)] hover:text-blue-500"
             >
               {link.name}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="px-5 py-2 rounded-full border border-blue-500/50 hover:bg-blue-500/10 transition-all text-sm font-semibold"
-          >
-            Hire Me
-          </a>
+          
+          <div className="flex items-center gap-4 ml-4">
+            <button
+              onClick={downloadResume}
+              className="px-5 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all text-sm font-semibold flex items-center gap-2"
+            >
+              <Download size={16} /> Resume
+            </button>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="md:hidden flex items-center gap-4">
+          <button className="text-[var(--text-primary)]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -119,7 +136,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0a0f1a] border-b border-white/10 overflow-hidden"
+            className="md:hidden bg-[var(--bg-secondary)] border-b border-[var(--border-color)] overflow-hidden"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
@@ -127,11 +144,17 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-lg font-medium hover:text-blue-400"
+                  className="text-lg font-medium text-[var(--text-primary)] hover:text-blue-500"
                 >
                   {link.name}
                 </a>
               ))}
+              <button
+                onClick={downloadResume}
+                className="w-full mt-4 px-5 py-3 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center gap-2"
+              >
+                <Download size={18} /> Download Resume
+              </button>
             </div>
           </motion.div>
         )}
@@ -141,8 +164,12 @@ const Navbar = () => {
 };
 
 export default function App() {
+  const downloadResume = () => {
+    alert("Resume download started! (Mock)");
+  };
+
   return (
-    <div className="min-h-screen selection:bg-blue-500/30">
+    <div className="min-h-screen selection:bg-blue-500/30 bg-[var(--bg-primary)] text-[var(--text-secondary)]">
       <Navbar />
 
       {/* Hero Section */}
@@ -158,7 +185,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-6 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold tracking-wide uppercase"
+            className="inline-block mb-6 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-sm font-semibold tracking-wide uppercase"
           >
             Available for Freelance
           </motion.div>
@@ -166,7 +193,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-6xl md:text-8xl font-bold tracking-tight mb-6 leading-tight"
+            className="text-6xl md:text-8xl font-bold tracking-tight mb-6 leading-tight text-[var(--text-primary)]"
           >
             Hi, I'm <span className="text-gradient">Sashikant</span>
           </motion.h1>
@@ -174,7 +201,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-[var(--text-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             Aspiring Web Developer & Creative Designer dedicated to building
             digital experiences that matter.
@@ -191,12 +218,12 @@ export default function App() {
             >
               View Projects <ChevronRight size={20} />
             </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl font-bold transition-all backdrop-blur-sm"
+            <button
+              onClick={downloadResume}
+              className="px-8 py-4 bg-white/5 hover:bg-white/10 text-[var(--text-primary)] border border-[var(--border-color)] rounded-xl font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-2"
             >
-              Contact Me
-            </a>
+              <Download size={20} /> Resume
+            </button>
           </motion.div>
         </div>
 
@@ -204,24 +231,24 @@ export default function App() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-500 hidden md:block"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[var(--text-secondary)] hidden md:block opacity-50"
         >
-          <div className="w-6 h-10 border-2 border-slate-700 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-slate-700 rounded-full" />
+          <div className="w-6 h-10 border-2 border-[var(--text-secondary)] rounded-full flex justify-center pt-2">
+            <div className="w-1 h-2 bg-[var(--text-secondary)] rounded-full" />
           </div>
         </motion.div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-6 md:px-12 bg-[#050912]">
-        <div className="max-w-7xl mx-auto grid md:grid-columns-2 gap-16 items-center">
+      <section id="about" className="py-24 px-6 md:px-12 bg-[var(--bg-secondary)]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div className="md:col-span-1">
             <SectionHeading subtitle="Who I Am">About Me</SectionHeading>
-            <div className="space-y-6 text-lg text-slate-400 leading-relaxed">
+            <div className="space-y-6 text-lg text-[var(--text-secondary)] leading-relaxed">
               <p>
-                As a second-year <span className="text-white font-medium">BSc IT student</span> at Informatics College, 
+                As a second-year <span className="text-[var(--text-primary)] font-medium text-blue-500">BSc IT student</span> at Informatics College, 
                 I combine my academic foundation in technology with over 
-                <span className="text-white font-medium"> 4 years of creative experience</span> in video editing and graphic design.
+                <span className="text-[var(--text-primary)] font-medium"> 4 years of creative experience</span> in video editing and graphic design.
               </p>
               <p>
                 My journey began in the visual arts, where I mastered the craft of storytelling through pixels and frames. 
@@ -234,16 +261,21 @@ export default function App() {
               </p>
             </div>
           </div>
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-            <div className="relative aspect-square rounded-2xl bg-slate-800 border border-white/10 overflow-hidden">
-               <img 
-                src="https://picsum.photos/seed/sashikant/800/800" 
-                alt="Sashikant Gupta" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                referrerPolicy="no-referrer"
-              />
-            </div>
+          <div className="relative group perspective-1000">
+            <motion.div 
+              whileHover={{ rotateY: -10, rotateX: 5, scale: 1.02 }}
+              className="preserve-3d transition-transform duration-500"
+            >
+              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
+              <div className="relative aspect-square rounded-2xl bg-slate-800 border border-[var(--border-color)] overflow-hidden shadow-2xl">
+                 <img 
+                  src="https://picsum.photos/seed/sashikant/800/800" 
+                  alt="Sashikant Gupta" 
+                  className="w-full h-full object-cover transition-all duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -256,40 +288,45 @@ export default function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Programming */}
             <SkillCard 
-              icon={<Code2 className="text-blue-400" />} 
+              icon={<Code2 size={32} className="text-blue-500" />} 
               title="Development" 
               skills={["Python", "Java", "SQL", "HTML5", "CSS3", "JavaScript"]} 
+              accentColor="rgba(59, 130, 246, 0.5)"
             />
             {/* Creative */}
             <SkillCard 
-              icon={<Video className="text-purple-400" />} 
+              icon={<Video size={32} className="text-purple-500" />} 
               title="Creative Design" 
               skills={["Video Editing", "Content Creation", "Graphic Design", "Banner Design", "Thumbnail Design"]} 
+              accentColor="rgba(168, 85, 247, 0.5)"
             />
             {/* Tools */}
             <SkillCard 
-              icon={<Layers className="text-orange-400" />} 
+              icon={<Layers size={32} className="text-orange-500" />} 
               title="Tools & Platforms" 
               skills={["VS Code", "GitHub", "Figma", "Canva", "BlueJ"]} 
+              accentColor="rgba(249, 115, 22, 0.5)"
             />
             {/* AI */}
             <SkillCard 
-              icon={<Cpu className="text-green-400" />} 
+              icon={<Cpu size={32} className="text-green-500" />} 
               title="AI & Engineering" 
               skills={["Gemini", "ChatGPT", "AI Prompt Engineering", "AI Integrations"]} 
+              accentColor="rgba(34, 197, 94, 0.5)"
             />
             {/* Infrastructure */}
             <SkillCard 
-              icon={<Server className="text-pink-400" />} 
+              icon={<Server size={32} className="text-pink-500" />} 
               title="Systems & Cloud" 
               skills={["Cloud Computing", "Networking", "Operating Systems", "UI/UX Foundations"]} 
+              accentColor="rgba(236, 72, 153, 0.5)"
             />
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 px-6 md:px-12 bg-[#050912]">
+      <section id="projects" className="py-24 px-6 md:px-12 bg-[var(--bg-secondary)]">
         <div className="max-w-7xl mx-auto">
           <SectionHeading subtitle="Selected Work">Featured Projects</SectionHeading>
           
@@ -319,7 +356,6 @@ export default function App() {
       {/* Experience & Education */}
       <section id="experience" className="py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
-          {/* Experience */}
           <div id="experience">
             <SectionHeading subtitle="Professional">Experience</SectionHeading>
             <div className="space-y-12">
@@ -333,7 +369,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Education */}
           <div id="education">
             <SectionHeading subtitle="Academic">Education</SectionHeading>
             <div className="space-y-12">
@@ -346,17 +381,10 @@ export default function App() {
               />
                <TimelineItem 
                 icon={<GraduationCap size={20} />}
-                title="Class 12"
+                title="High School"
                 company="Himal College"
-                date="Completed"
-                description="High school education with a focus on science and logic."
-              />
-               <TimelineItem 
-                icon={<GraduationCap size={20} />}
-                title="Class 10"
-                company="Few Public School"
-                date="Completed"
-                description="Foundational schooling where interest in technology first surfaced."
+                date="Class 12"
+                description="Specialized in science and technology foundations."
               />
             </div>
           </div>
@@ -364,10 +392,10 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 md:px-12 bg-[#050912]">
+      <section id="contact" className="py-24 px-6 md:px-12 bg-[var(--bg-secondary)]">
         <div className="max-w-4xl mx-auto text-center">
           <SectionHeading subtitle="Get In Touch">Let's Connect</SectionHeading>
-          <p className="text-xl text-slate-400 mb-12">
+          <p className="text-xl text-[var(--text-secondary)] mb-12">
             Interested in working together or just want to say hi? 
             My inbox is always open.
           </p>
@@ -391,7 +419,7 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="py-12 px-6 text-center border-t border-white/5 opacity-50 text-sm">
+      <footer className="py-12 px-6 text-center border-t border-[var(--border-color)] opacity-50 text-sm bg-[var(--bg-primary)] text-[var(--text-secondary)]">
         <p>© {new Date().getFullYear()} Sashikant Gupta. Built with Passion & Caffeine.</p>
       </footer>
     </div>
@@ -400,23 +428,31 @@ export default function App() {
 
 // --- Helper Components ---
 
-const SkillCard = ({ icon, title, skills }: { icon: React.ReactNode; title: string, skills: string[] }) => (
+const SkillCard = ({ icon, title, skills, accentColor }: { icon: React.ReactNode; title: string, skills: string[], accentColor: string }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    whileHover={{ y: -5 }}
-    className="p-8 rounded-3xl bg-[#0a0f1a] border border-white/5 hover:border-blue-500/30 transition-all group"
+    whileHover={{ 
+      rotateX: 10, 
+      rotateY: -5,
+      y: -10,
+      scale: 1.02,
+      boxShadow: `0 25px 50px -12px ${accentColor}`
+    }}
+    className="perspective-1000 p-8 rounded-3xl bg-[var(--card-bg)] border border-[var(--border-color)] transition-all group preserve-3d shadow-xl"
   >
-    <div className="mb-6 p-4 rounded-2xl bg-white/5 w-fit group-hover:scale-110 transition-transform">
-      {icon}
+    <div className="mb-6 p-4 rounded-2xl bg-white/5 w-fit group-hover:translate-z-10 transition-all shadow-inner">
+      <div className="group-hover:scale-110 transition-transform duration-500">
+        {icon}
+      </div>
     </div>
-    <h3 className="text-xl font-bold mb-6">{title}</h3>
-    <div className="flex flex-wrap gap-2">
+    <h3 className="text-xl font-bold mb-6 text-[var(--text-primary)] group-hover:translate-z-5 transition-transform">{title}</h3>
+    <div className="flex flex-wrap gap-2 group-hover:translate-z-5 transition-transform">
       {skills.map((skill) => (
         <span 
           key={skill} 
-          className="px-3 py-1 rounded-lg bg-white/5 text-slate-400 text-xs font-semibold hover:text-white hover:bg-white/10 transition-colors"
+          className="px-3 py-1 rounded-lg bg-white/5 text-[var(--text-secondary)] text-xs font-semibold hover:text-[var(--text-primary)] hover:bg-white/10 transition-colors"
         >
           {skill}
         </span>
@@ -432,7 +468,7 @@ const ProjectCard = ({ title, description, tags, image }: { title: string; descr
     viewport={{ once: true }}
     className="group"
   >
-    <div className="relative overflow-hidden rounded-3xl border border-white/5 mb-6 bg-slate-900 aspect-video">
+    <div className="relative overflow-hidden rounded-3xl border border-[var(--border-color)] mb-6 bg-slate-900 aspect-video shadow-lg">
       <img 
         src={image} 
         alt={title} 
@@ -450,11 +486,11 @@ const ProjectCard = ({ title, description, tags, image }: { title: string; descr
         </div>
       </div>
     </div>
-    <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">{title}</h3>
-    <p className="text-slate-400 mb-4 line-clamp-2">{description}</p>
+    <h3 className="text-2xl font-bold mb-3 text-[var(--text-primary)] group-hover:text-blue-500 transition-colors">{title}</h3>
+    <p className="text-[var(--text-secondary)] mb-4 line-clamp-2">{description}</p>
     <div className="flex flex-wrap gap-2">
       {tags.map((tag) => (
-        <span key={tag} className="text-sm font-mono text-blue-400/80">#{tag}</span>
+        <span key={tag} className="text-sm font-mono text-blue-500/80 font-semibold">#{tag}</span>
       ))}
     </div>
   </motion.div>
@@ -465,23 +501,23 @@ const TimelineItem = ({ icon, title, company, date, description }: { icon: React
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    className="relative pl-12 border-l-2 border-white/10"
+    className="relative pl-12 border-l-2 border-[var(--border-color)]"
   >
-    <div className="absolute left-0 top-0 -translate-x-1/2 w-10 h-10 rounded-full bg-[#03060b] border-2 border-white/10 flex items-center justify-center text-blue-500 shadow-lg shadow-blue-500/10">
+    <div className="absolute left-0 top-0 -translate-x-1/2 w-10 h-10 rounded-full bg-[var(--bg-primary)] border-2 border-[var(--border-color)] flex items-center justify-center text-blue-500 shadow-lg transition-colors">
       {icon}
     </div>
-    <div className="mb-1 text-blue-400 font-bold tracking-wider text-sm">{date}</div>
-    <h3 className="text-2xl font-bold mb-1">{title}</h3>
-    <div className="text-white/70 font-medium mb-4">{company}</div>
-    <p className="text-slate-400 leading-relaxed">{description}</p>
+    <div className="mb-1 text-blue-500 font-bold tracking-wider text-sm">{date}</div>
+    <h3 className="text-2xl font-bold mb-1 text-[var(--text-primary)]">{title}</h3>
+    <div className="text-[var(--text-secondary)] font-medium mb-4 opacity-70">{company}</div>
+    <p className="text-[var(--text-secondary)] leading-relaxed">{description}</p>
   </motion.div>
 );
 
 const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) => (
   <motion.a
-    whileHover={{ y: -5 }}
+    whileHover={{ y: -5, scale: 1.1 }}
     href={href}
-    className="p-4 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-blue-500/50 transition-all"
+    className="p-4 rounded-full bg-white/5 border border-[var(--border-color)] text-[var(--text-secondary)] hover:text-blue-500 hover:border-blue-500/50 transition-all shadow-sm"
     aria-label={label}
   >
     {icon}
