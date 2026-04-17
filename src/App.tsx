@@ -338,19 +338,19 @@ export default function App() {
               title="Watch E-Commerce"
               description="A modern, responsive frontend for a luxury timepiece store. Focused on clean UI and smooth interactions."
               tags={["HTML", "CSS", "Responsive"]}
-              image="https://picsum.photos/seed/watch/600/400"
+              image="/image/Gemini_Generated_Image_isvcbyisvcbyisvc.png"
             />
             <ProjectCard
               title="Gym Management System"
               description="A CLI application built with Java using Object-Oriented principles for managing memberships and tracking schedules."
               tags={["Java", "BlueJ", "OOP"]}
-              image="https://picsum.photos/seed/gym/600/400"
+              image="../image/Gemini_Generated_Image_swt2ahswt2ahswt2.png"
             />
             <ProjectCard
               title="Automatic Water Tank System"
               description="A technical hardware project integrating sensors to automate water level management efficiently."
               tags={["Hardware", "Automation", "College Project"]}
-              image="https://picsum.photos/seed/water/600/400"
+              image="../image/image_3.jpeg"
             />
           </div>
         </div>
