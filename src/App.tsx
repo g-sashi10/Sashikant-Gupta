@@ -71,14 +71,12 @@ const Navbar = () => {
   ];
 
   const downloadResume = () => {
-    // Mock resume download logic
     const link = document.createElement("a");
-    link.href = "#"; // Replace with actual resume link
+    link.href = "/Sashikant_cv.pdf";
     link.download = "Sashikant_Gupta_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    alert("Resume download started! (Mock)");
   };
 
   return (
@@ -165,7 +163,12 @@ const Navbar = () => {
 
 export default function App() {
   const downloadResume = () => {
-    alert("Resume download started! (Mock)");
+    const link = document.createElement("a");
+    link.href = "/Sashikant_cv.pdf";
+    link.download = "Sashikant_Gupta_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -411,8 +414,8 @@ export default function App() {
             </motion.a>
             
             <div className="flex gap-6 mt-4">
-              <SocialLink href="https://github.com" icon={<Github />} label="GitHub" />
-              <SocialLink href="https://linkedin.com" icon={<Linkedin />} label="LinkedIn" />
+              <SocialLink href="https://github.com/Sashi077" icon={<Github />} label="GitHub" />
+              <SocialLink href="https://www.linkedin.com/in/sashikant-gupta-56b97633b/" icon={<Linkedin />} label="LinkedIn" />
               <SocialLink href="mailto:sashikantg07@gmail.com" icon={<Mail />} label="Email" />
             </div>
           </div>
