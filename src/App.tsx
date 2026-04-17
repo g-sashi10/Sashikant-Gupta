@@ -272,7 +272,7 @@ export default function App() {
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
               <div className="relative aspect-square rounded-2xl bg-slate-800 border border-[var(--border-color)] overflow-hidden shadow-2xl">
                  <img 
-                  src="https://picsum.photos/seed/sashikant/800/800" 
+                  src="../image/image_3d.png" 
                   alt="Sashikant Gupta" 
                   className="w-full h-full object-cover transition-all duration-500"
                   referrerPolicy="no-referrer"
@@ -414,8 +414,8 @@ export default function App() {
             </motion.a>
             
             <div className="flex gap-6 mt-4">
-              <SocialLink href="https://github.com/Sashi077" icon={<Github />} label="GitHub" />
-              <SocialLink href="https://www.linkedin.com/in/sashikant-gupta-56b97633b/" icon={<Linkedin />} label="LinkedIn" />
+              <SocialLink href="https://github.com" icon={<Github />} label="GitHub" />
+              <SocialLink href="https://linkedin.com" icon={<Linkedin />} label="LinkedIn" />
               <SocialLink href="mailto:sashikantg07@gmail.com" icon={<Mail />} label="Email" />
             </div>
           </div>
