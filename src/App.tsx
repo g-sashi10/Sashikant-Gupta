@@ -272,7 +272,7 @@ export default function App() {
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
               <div className="relative aspect-square rounded-2xl bg-slate-800 border border-[var(--border-color)] overflow-hidden shadow-2xl">
                  <img 
-                  src="../image/image_3d.png" 
+                  src="/image/image_3d.png" 
                   alt="Sashikant Gupta" 
                   className="w-full h-full object-cover transition-all duration-500"
                   referrerPolicy="no-referrer"
@@ -344,13 +344,13 @@ export default function App() {
               title="Gym Management System"
               description="A CLI application built with Java using Object-Oriented principles for managing memberships and tracking schedules."
               tags={["Java", "BlueJ", "OOP"]}
-              image="../image/Gemini_Generated_Image_swt2ahswt2ahswt2.png"
+              image="/image/Gemini_Generated_Image_swt2ahswt2ahswt2.png"
             />
             <ProjectCard
               title="Automatic Water Tank System"
               description="A technical hardware project integrating sensors to automate water level management efficiently."
               tags={["Hardware", "Automation", "College Project"]}
-              image="../image/image_3.jpeg"
+              image="/image/image_3.jpeg"
             />
           </div>
         </div>
