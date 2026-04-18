@@ -206,8 +206,8 @@ export default function App() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl md:text-2xl text-[var(--text-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Aspiring Web Developer & Creative Designer dedicated to building
-            digital experiences that matter.
+            Web Developer & Creative Designer dedicated to building
+            digital experience.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -272,7 +272,7 @@ export default function App() {
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/30 to-purple-500/30 rounded-2xl blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
               <div className="relative aspect-square rounded-2xl bg-slate-800 border border-[var(--border-color)] overflow-hidden shadow-2xl">
                  <img 
-                  src="/image/image_3d.png" 
+                  src="https://picsum.photos/seed/sashikant/800/800" 
                   alt="Sashikant Gupta" 
                   className="w-full h-full object-cover transition-all duration-500"
                   referrerPolicy="no-referrer"
@@ -338,19 +338,19 @@ export default function App() {
               title="Watch E-Commerce"
               description="A modern, responsive frontend for a luxury timepiece store. Focused on clean UI and smooth interactions."
               tags={["HTML", "CSS", "Responsive"]}
-              image="/image/Gemini_Generated_Image_isvcbyisvcbyisvc.png"
+              image="https://picsum.photos/seed/watch/600/400"
             />
             <ProjectCard
               title="Gym Management System"
               description="A CLI application built with Java using Object-Oriented principles for managing memberships and tracking schedules."
               tags={["Java", "BlueJ", "OOP"]}
-              image="/image/Gemini_Generated_Image_swt2ahswt2ahswt2.png"
+              image="https://picsum.photos/seed/gym/600/400"
             />
             <ProjectCard
               title="Automatic Water Tank System"
               description="A technical hardware project integrating sensors to automate water level management efficiently."
               tags={["Hardware", "Automation", "College Project"]}
-              image="/image/image_3.jpeg"
+              image="https://picsum.photos/seed/water/600/400"
             />
           </div>
         </div>
@@ -414,8 +414,8 @@ export default function App() {
             </motion.a>
             
             <div className="flex gap-6 mt-4">
-              <SocialLink href="https://github.com" icon={<Github />} label="GitHub" />
-              <SocialLink href="https://linkedin.com" icon={<Linkedin />} label="LinkedIn" />
+              <SocialLink href="https://github.com/Sashi077" icon={<Github />} label="GitHub" />
+              <SocialLink href="https://www.linkedin.com/in/sashikant-gupta-56b97633b/" icon={<Linkedin />} label="LinkedIn" />
               <SocialLink href="mailto:sashikantg07@gmail.com" icon={<Mail />} label="Email" />
             </div>
           </div>
